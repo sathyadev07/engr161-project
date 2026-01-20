@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MACRO: Mars Cargo Mobility System</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #c2410c; /* Mars Orange/Red */
+            --secondary-color: #1e293b; /* Space Dark */
+            --text-dark: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --code-bg: #0f172a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Container */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 35px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 14px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .btn:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section { padding: 80px 0; border-bottom: 1px solid #e2e8f0; }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            text-align: left;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-item {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .grid-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Code Block */
+        pre {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        /* Stats Row */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .stat-box h4 { font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 5px; }
+        .stat-box span { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-light); }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: var(--secondary-color);
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">Team 41 Portfolio</a>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#engineering">Engineering</a>
+                <a href="#code">Software</a>
+                <a href="#reflection">Reflection</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>The MACRO Project</h1>
+            <p>Mars Cargo Mobility System: An autonomous rover designed to traverse simulated Martian terrain, detect magnetic beacons, and deliver delicate cargo.</p>
+            <a href="#overview" class="btn">View Project Analysis</a>
+        </div>
+    </header>
+
+    <section id="overview">
+        <div class="container">
+            <h2>Project Abstract</h2>
+            <div class="card">
+                <p><strong>The Challenge:</strong> Design an autonomous robot to pathfind along a black line, detect magnetic beacons, and traverse obstacles to deliver three distinct cargo types without tipping.</p>
+                <br>
+                <p><strong>The Solution:</strong> We engineered a compact Rear-Wheel Drive (RWD) rover featuring a custom "hugger" cargo mechanism. The system utilizes sensor fusion (Ultrasonic + IMU) and a Raspberry Pi control unit to navigate and adapt to terrain changes in real-time.</p>
+                
+                <div class="stats">
+                    <div class="stat-box">
+                        <h4>11.86s</h4>
+                        <span>Speed Trial Time</span>
+                    </div>
+                    <div class="stat-box">
+                        <h4>3</h4>
+                        <span>Cargo Types</span>
+                    </div>
+                    <div class="stat-box">
+                        <h4>80Hz</h4>
+                        <span>Sensor Sample Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="engineering">
+        <div class="container">
+            <h2>Mechanical & System Design</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>Drivetrain Evolution</h3>
+                    <p>We iterated through three distinct drivetrain designs. We rejected <strong>Treads</strong> due to axle bending and <strong>Front-Wheel Drive</strong> due to poor traction on inclines. We finalized on a <strong>Rear-Wheel Drive (RWD)</strong> system which centralized mass over the drive motors for maximum grip.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>The "Hugger" Mechanism</h3>
+                    <p>To secure cargo without complex hydraulics, we designed a worm-gear driven "hugger." It clamps the cargo during transport and retracts to release it. A secondary "pusher" wall ensures the payload is ejected cleanly at the drop zone.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Sensor Integration</h3>
+                    <p>The robot features a multi-sensor array:
+                    <br>• <strong>IMU (Gyro):</strong> For magnetic beacon counting and dynamic power adjustment on ramps.
+                    <br>• <strong>Ultrasonic:</strong> For obstacle avoidance (< 10cm).
+                    <br>• <strong>Line Finders:</strong> Dual IR sensors for PID-based path correction.</p>
+                </div>
+            </div>
+            <br>
+            <center>
+                <a href="report.pdf" class="btn">Download Full Engineering Report (PDF)</a>
+            </center>
+        </div>
+    </section>
+
+    <section id="code">
+        <div class="container">
+            <h2>Autonomous Navigation Logic</h2>
+            <p style="margin-bottom: 20px;">The software utilizes a state-machine architecture. Below is the core search logic used when the robot loses the line. Instead of stopping, it initiates a "Look Left / Look Right" pattern to recover the path.</p>
+            
+            <pre>
+def main():
+    motorA = Motor('C')
+    motorB = Motor('D')
+    lineFinderA = LineFinder(24) # Right Sensor
+    lineFinderB = LineFinder(26) # Left Sensor
+
+    while True:
+        # Standard Line Following
+        if curValueA == 1 or curValueB == 1:
+            goForward(motorA, motorB, 0.3, 0.25)
+            continue
+          
+        # Lost Line Recovery Logic
+        elif curValueA == 0 and curValueB == 0:
+            print("No line detected. Searching...")
+            
+            # 1. Check Left
+            turnLeft(motorA, motorB, .2, 1)
+            if lineFinderA.value == 1 or lineFinderB.value == 1: 
+                goForward(motorA,motorB, 0.3, .25)
+                continue
+            
+            # 2. Check Right (wider sweep)
+            else: 
+                turnRight(motorA, motorB, .2, 2)
+                if lineFinderB.value == 1:
+                    goForward(motorA, motorB, 0.3, .25)
+                    continue
+            </pre>
+            <br>
+            <p><em>Written in Python using the BuildHat library for Raspberry Pi.</em></p>
+        </div>
+    </section>
+
+    <section id="reflection">
+        <div class="container">
+            <h2>Critical Analysis & Reflection</h2>
+            <div class="card" style="border-left: 5px solid #ef4444;">
+                <h3>The "Demo Day" Anomaly</h3>
+                <p>While the rover performed perfectly in pre-demo testing (completing 5/6 tasks), the final demonstration faced challenges. We identified two root causes:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Ambient Light Interference:</strong> The high reflectivity of the gymnasium floor blinded the IR sensors, which were calibrated for the dimmer dorm lounge.</li>
+                    <li><strong>Motor Hysteresis:</strong> The motors struggled to reverse instantly during high-frequency switching, causing the robot to jitter rather than turn.</li>
+                </ul>
+                <br>
+                <p><strong>Lesson Learned:</strong> Future designs will include a robust "Calibration Mode" to adjust sensor thresholds on-site and a software buffer to prevent rapid motor direction switching.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Team 41 Engineering Portfolio. Enrolled in ENGR 162.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
